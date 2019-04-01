@@ -18,168 +18,48 @@ Resources:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Function.Arn}/invocations
+                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${zebra.Arn}/invocations
               responses: {}
           "/\U0001F984":
             post:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${U1F984.Arn}/invocations
+                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${unicorn.Arn}/invocations
               responses: {}
           "/\U0001F405":
             get:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Function4.Arn}/invocations
+                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${tiger.Arn}/invocations
               responses: {}
           "/\U0001F999":
             get:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Function2.Arn}/invocations
+                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${llama.Arn}/invocations
               responses: {}
           "/\U0001F43F":
             get:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Function3.Arn}/invocations
+                uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${squirrel.Arn}/invocations
               responses: {}
       EndpointConfiguration: REGIONAL
     Metadata:
       StackeryName: ⛩
-  U1F984:
+  tiger:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub ${AWS::StackName}-getWelcomePage
-      Description: !Sub
-        - Stackery Stack ${StackeryStackTagName} Environment ${StackeryEnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F984"
-      CodeUri: src/U1F984
-      Handler: unicorn.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref Table
-      Events:
-        U26E9POST:
-          Type: Api
-          Properties:
-            Path: "/\U0001F984"
-            Method: POST
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
-          TABLE_ARN: !GetAtt Table.Arn
-    Metadata:
-      StackeryName: "\U0001F984"
-  Function:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-Function
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F993"
-      CodeUri: src/Function
-      Handler: index.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref Table
-      Events:
-        U26E9GET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F993"
-            Method: GET
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
-          TABLE_ARN: !GetAtt Table.Arn
-    Metadata:
-      StackeryName: "\U0001F993"
-  Function2:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-Function2
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F999"
-      CodeUri: src/Function2
-      Handler: index.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref Table
-      Events:
-        U26E9GET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F999"
-            Method: GET
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
-          TABLE_ARN: !GetAtt Table.Arn
-    Metadata:
-      StackeryName: "\U0001F999"
-  Function3:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-Function3
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F43F"
-      CodeUri: src/Function3
-      Handler: index.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref Table
-      Events:
-        U26E9GET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F43F"
-            Method: GET
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
-          TABLE_ARN: !GetAtt Table.Arn
-    Metadata:
-      StackeryName: "\U0001F43F"
-  Function4:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-Function4
+      FunctionName: !Sub ${AWS::StackName}-tiger
       Description: !Sub
         - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
         - ResourceName: "\U0001F405"
-      CodeUri: src/Function4
-      Handler: index.handler
+      CodeUri: src/tiger
+      Handler: tiger.handler
       Runtime: nodejs8.10
       MemorySize: 3008
       Timeout: 30
@@ -187,7 +67,7 @@ Resources:
       Policies:
         - AWSXrayWriteOnlyAccess
         - DynamoDBCrudPolicy:
-            TableName: !Ref Table
+            TableName: !Ref ZooShip
       Events:
         U26E9GET:
           Type: Api
@@ -197,11 +77,131 @@ Resources:
             RestApiId: !Ref U26E9
       Environment:
         Variables:
-          TABLE_NAME: !Ref Table
-          TABLE_ARN: !GetAtt Table.Arn
+          TABLE_NAME: !Ref ZooShip
+          TABLE_ARN: !GetAtt ZooShip.Arn
     Metadata:
       StackeryName: "\U0001F405"
-  Table:
+  squirrel:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-squirrel
+      Description: !Sub
+        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F43F"
+      CodeUri: src/squirrel
+      Handler: squirrel.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ZooShip
+      Events:
+        U26E9GET:
+          Type: Api
+          Properties:
+            Path: "/\U0001F43F"
+            Method: GET
+            RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ZooShip
+          TABLE_ARN: !GetAtt ZooShip.Arn
+    Metadata:
+      StackeryName: "\U0001F43F"
+  llama:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-llama
+      Description: !Sub
+        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F999"
+      CodeUri: src/llama
+      Handler: llama.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ZooShip
+      Events:
+        U26E9GET:
+          Type: Api
+          Properties:
+            Path: "/\U0001F999"
+            Method: GET
+            RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ZooShip
+          TABLE_ARN: !GetAtt ZooShip.Arn
+    Metadata:
+      StackeryName: "\U0001F999"
+  zebra:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-zebra
+      Description: !Sub
+        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F993"
+      CodeUri: src/zebra
+      Handler: zebra.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ZooShip
+      Events:
+        U26E9GET:
+          Type: Api
+          Properties:
+            Path: "/\U0001F993"
+            Method: GET
+            RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ZooShip
+          TABLE_ARN: !GetAtt ZooShip.Arn
+    Metadata:
+      StackeryName: "\U0001F993"
+  unicorn:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-getWelcomePage
+      Description: !Sub
+        - Stackery Stack ${StackeryStackTagName} Environment ${StackeryEnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F984"
+      CodeUri: src/unicorn
+      Handler: unicorn.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ZooShip
+      Events:
+        U26E9POST:
+          Type: Api
+          Properties:
+            Path: "/\U0001F984"
+            Method: POST
+            RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ZooShip
+          TABLE_ARN: !GetAtt ZooShip.Arn
+    Metadata:
+      StackeryName: "\U0001F984"
+  ZooShip:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -213,7 +213,7 @@ Resources:
           KeyType: HASH
       StreamSpecification:
         StreamViewType: NEW_AND_OLD_IMAGES
-      TableName: !Sub ${AWS::StackName}-Table
+      TableName: !Sub ${AWS::StackName}-ZooShip
     Metadata:
       StackeryName: "\U0001F6A2"
 Parameters:
