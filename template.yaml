@@ -215,7 +215,7 @@ Resources:
         StreamViewType: NEW_AND_OLD_IMAGES
       TableName: !Sub ${AWS::StackName}-EmojiTable
     Metadata:
-      StackeryName: "\U0001F6A2"
+      StackeryName: "\U0001F4BC"
 Parameters:
   StackeryStackTagName:
     Type: String
