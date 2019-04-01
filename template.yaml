@@ -2,7 +2,157 @@ AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 Description: Stackery Serverless Emoji Stack
 Resources:
-  U26E9:
+  tiger:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-tiger
+      Description: !Sub
+        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F405"
+      CodeUri: src/tiger
+      Handler: tiger.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref EmojiTable
+      Events:
+        emojiGatewayGET:
+          Type: Api
+          Properties:
+            Path: "/\U0001F405"
+            Method: GET
+            RestApiId: !Ref emojiGateway
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref EmojiTable
+          TABLE_ARN: !GetAtt EmojiTable.Arn
+    Metadata:
+      StackeryName: "\U0001F405"
+  squirrel:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-squirrel
+      Description: !Sub
+        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F43F"
+      CodeUri: src/squirrel
+      Handler: squirrel.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref EmojiTable
+      Events:
+        emojiGatewayGET:
+          Type: Api
+          Properties:
+            Path: "/\U0001F43F"
+            Method: GET
+            RestApiId: !Ref emojiGateway
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref EmojiTable
+          TABLE_ARN: !GetAtt EmojiTable.Arn
+    Metadata:
+      StackeryName: "\U0001F43F"
+  llama:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-llama
+      Description: !Sub
+        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F999"
+      CodeUri: src/llama
+      Handler: llama.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref EmojiTable
+      Events:
+        emojiGatewayGET:
+          Type: Api
+          Properties:
+            Path: "/\U0001F999"
+            Method: GET
+            RestApiId: !Ref emojiGateway
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref EmojiTable
+          TABLE_ARN: !GetAtt EmojiTable.Arn
+    Metadata:
+      StackeryName: "\U0001F999"
+  zebra:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-zebra
+      Description: !Sub
+        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F993"
+      CodeUri: src/zebra
+      Handler: zebra.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref EmojiTable
+      Events:
+        emojiGatewayGET:
+          Type: Api
+          Properties:
+            Path: "/\U0001F993"
+            Method: GET
+            RestApiId: !Ref emojiGateway
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref EmojiTable
+          TABLE_ARN: !GetAtt EmojiTable.Arn
+    Metadata:
+      StackeryName: "\U0001F993"
+  unicorn:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-getWelcomePage
+      Description: !Sub
+        - Stackery Stack ${StackeryStackTagName} Environment ${StackeryEnvironmentTagName} Function ${ResourceName}
+        - ResourceName: "\U0001F984"
+      CodeUri: src/unicorn
+      Handler: unicorn.handler
+      Runtime: nodejs8.10
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref EmojiTable
+      Events:
+        emojiGatewayPOST:
+          Type: Api
+          Properties:
+            Path: "/\U0001F984"
+            Method: POST
+            RestApiId: !Ref emojiGateway
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref EmojiTable
+          TABLE_ARN: !GetAtt EmojiTable.Arn
+    Metadata:
+      StackeryName: "\U0001F984"
+  emojiGateway:
     Type: AWS::Serverless::Api
     Properties:
       Name: !Sub
@@ -51,157 +201,7 @@ Resources:
       EndpointConfiguration: REGIONAL
     Metadata:
       StackeryName: ⛩
-  tiger:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-tiger
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F405"
-      CodeUri: src/tiger
-      Handler: tiger.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ZooShip
-      Events:
-        U26E9GET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F405"
-            Method: GET
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ZooShip
-          TABLE_ARN: !GetAtt ZooShip.Arn
-    Metadata:
-      StackeryName: "\U0001F405"
-  squirrel:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-squirrel
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F43F"
-      CodeUri: src/squirrel
-      Handler: squirrel.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ZooShip
-      Events:
-        U26E9GET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F43F"
-            Method: GET
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ZooShip
-          TABLE_ARN: !GetAtt ZooShip.Arn
-    Metadata:
-      StackeryName: "\U0001F43F"
-  llama:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-llama
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F999"
-      CodeUri: src/llama
-      Handler: llama.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ZooShip
-      Events:
-        U26E9GET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F999"
-            Method: GET
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ZooShip
-          TABLE_ARN: !GetAtt ZooShip.Arn
-    Metadata:
-      StackeryName: "\U0001F999"
-  zebra:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-zebra
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F993"
-      CodeUri: src/zebra
-      Handler: zebra.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ZooShip
-      Events:
-        U26E9GET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F993"
-            Method: GET
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ZooShip
-          TABLE_ARN: !GetAtt ZooShip.Arn
-    Metadata:
-      StackeryName: "\U0001F993"
-  unicorn:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-getWelcomePage
-      Description: !Sub
-        - Stackery Stack ${StackeryStackTagName} Environment ${StackeryEnvironmentTagName} Function ${ResourceName}
-        - ResourceName: "\U0001F984"
-      CodeUri: src/unicorn
-      Handler: unicorn.handler
-      Runtime: nodejs8.10
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ZooShip
-      Events:
-        U26E9POST:
-          Type: Api
-          Properties:
-            Path: "/\U0001F984"
-            Method: POST
-            RestApiId: !Ref U26E9
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ZooShip
-          TABLE_ARN: !GetAtt ZooShip.Arn
-    Metadata:
-      StackeryName: "\U0001F984"
-  ZooShip:
+  EmojiTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -213,7 +213,7 @@ Resources:
           KeyType: HASH
       StreamSpecification:
         StreamViewType: NEW_AND_OLD_IMAGES
-      TableName: !Sub ${AWS::StackName}-ZooShip
+      TableName: !Sub ${AWS::StackName}-EmojiTable
     Metadata:
       StackeryName: "\U0001F6A2"
 Parameters:
