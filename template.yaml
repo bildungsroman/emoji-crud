@@ -66,6 +66,8 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
       Events:
         U26E9POST:
           Type: Api
@@ -73,6 +75,10 @@ Resources:
             Path: "/\U0001F984"
             Method: POST
             RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          TABLE_ARN: !GetAtt Table.Arn
     Metadata:
       StackeryName: "\U0001F984"
   Function:
@@ -90,6 +96,8 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
       Events:
         U26E9GET:
           Type: Api
@@ -97,6 +105,10 @@ Resources:
             Path: "/\U0001F993"
             Method: GET
             RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          TABLE_ARN: !GetAtt Table.Arn
     Metadata:
       StackeryName: "\U0001F993"
   Function2:
@@ -114,6 +126,8 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
       Events:
         U26E9GET:
           Type: Api
@@ -121,6 +135,10 @@ Resources:
             Path: "/\U0001F999"
             Method: GET
             RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          TABLE_ARN: !GetAtt Table.Arn
     Metadata:
       StackeryName: "\U0001F999"
   Function3:
@@ -138,6 +156,8 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
       Events:
         U26E9GET:
           Type: Api
@@ -145,6 +165,10 @@ Resources:
             Path: "/\U0001F43F"
             Method: GET
             RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          TABLE_ARN: !GetAtt Table.Arn
     Metadata:
       StackeryName: "\U0001F43F"
   Function4:
@@ -162,6 +186,8 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
       Events:
         U26E9GET:
           Type: Api
@@ -169,8 +195,27 @@ Resources:
             Path: "/\U0001F405"
             Method: GET
             RestApiId: !Ref U26E9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+          TABLE_ARN: !GetAtt Table.Arn
     Metadata:
       StackeryName: "\U0001F405"
+  Table:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      TableName: !Sub ${AWS::StackName}-Table
+    Metadata:
+      StackeryName: "\U0001F6A2"
 Parameters:
   StackeryStackTagName:
     Type: String
