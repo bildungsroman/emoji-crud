@@ -20,13 +20,6 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref EmojiTable
         - AWSLambdaENIManagementAccess
-      Events:
-        emojiGatewayGET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F405"
-            Method: GET
-            RestApiId: !Ref emojiGateway
       Environment:
         Variables:
           TABLE_NAME: !Ref EmojiTable
@@ -37,6 +30,13 @@ Resources:
         SubnetIds:
           - !Ref VirtualNetworkPrivateSubnet1
           - !Ref VirtualNetworkPrivateSubnet2
+      Events:
+        emojiGatewayPUT:
+          Type: Api
+          Properties:
+            Path: "/\U0001F405"
+            Method: PUT
+            RestApiId: !Ref emojiGateway
     Metadata:
       StackeryName: "\U0001F405"
   squirrel:
@@ -57,13 +57,6 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref EmojiTable
         - AWSLambdaENIManagementAccess
-      Events:
-        emojiGatewayGET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F43F"
-            Method: GET
-            RestApiId: !Ref emojiGateway
       Environment:
         Variables:
           TABLE_NAME: !Ref EmojiTable
@@ -74,6 +67,13 @@ Resources:
         SubnetIds:
           - !Ref VirtualNetworkPrivateSubnet1
           - !Ref VirtualNetworkPrivateSubnet2
+      Events:
+        emojiGatewayDELETE:
+          Type: Api
+          Properties:
+            Path: "/\U0001F43F"
+            Method: DELETE
+            RestApiId: !Ref emojiGateway
     Metadata:
       StackeryName: "\U0001F43F"
   llama:
@@ -94,13 +94,6 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref EmojiTable
         - AWSLambdaENIManagementAccess
-      Events:
-        emojiGatewayGET:
-          Type: Api
-          Properties:
-            Path: "/\U0001F999"
-            Method: GET
-            RestApiId: !Ref emojiGateway
       Environment:
         Variables:
           TABLE_NAME: !Ref EmojiTable
@@ -111,6 +104,13 @@ Resources:
         SubnetIds:
           - !Ref VirtualNetworkPrivateSubnet1
           - !Ref VirtualNetworkPrivateSubnet2
+      Events:
+        emojiGatewayPOST:
+          Type: Api
+          Properties:
+            Path: "/\U0001F999"
+            Method: POST
+            RestApiId: !Ref emojiGateway
     Metadata:
       StackeryName: "\U0001F999"
   zebra:
@@ -168,13 +168,6 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref EmojiTable
         - AWSLambdaENIManagementAccess
-      Events:
-        emojiGatewayPOST:
-          Type: Api
-          Properties:
-            Path: "/\U0001F984"
-            Method: POST
-            RestApiId: !Ref emojiGateway
       Environment:
         Variables:
           TABLE_NAME: !Ref EmojiTable
@@ -185,6 +178,13 @@ Resources:
         SubnetIds:
           - !Ref VirtualNetworkPrivateSubnet1
           - !Ref VirtualNetworkPrivateSubnet2
+      Events:
+        emojiGatewayANY:
+          Type: Api
+          Properties:
+            Path: "/\U0001F984"
+            Method: ANY
+            RestApiId: !Ref emojiGateway
     Metadata:
       StackeryName: "\U0001F984"
   emojiGateway:
@@ -206,28 +206,28 @@ Resources:
                 uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${zebra.Arn}/invocations
               responses: {}
           "/\U0001F984":
-            post:
+            x-amazon-apigateway-any-method:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
                 uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${unicorn.Arn}/invocations
               responses: {}
           "/\U0001F405":
-            get:
+            put:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
                 uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${tiger.Arn}/invocations
               responses: {}
           "/\U0001F999":
-            get:
+            post:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
                 uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${llama.Arn}/invocations
               responses: {}
           "/\U0001F43F":
-            get:
+            delete:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
