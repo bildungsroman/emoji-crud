@@ -10,8 +10,8 @@ Resources:
         - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
         - ResourceName: "\U0001F405"
       CodeUri: src/tiger
-      Handler: tiger.handler
-      Runtime: nodejs8.10
+      Handler: index.handler
+      Runtime: nodejs12.x
       MemorySize: 3008
       Timeout: 30
       Tracing: Active
@@ -47,8 +47,8 @@ Resources:
         - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
         - ResourceName: "\U0001F43F"
       CodeUri: src/squirrel
-      Handler: squirrel.handler
-      Runtime: nodejs8.10
+      Handler: index.handler
+      Runtime: nodejs12.x
       MemorySize: 3008
       Timeout: 30
       Tracing: Active
@@ -84,8 +84,8 @@ Resources:
         - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
         - ResourceName: "\U0001F999"
       CodeUri: src/llama
-      Handler: llama.handler
-      Runtime: nodejs8.10
+      Handler: index.handler
+      Runtime: nodejs12.x
       MemorySize: 3008
       Timeout: 30
       Tracing: Active
@@ -121,8 +121,8 @@ Resources:
         - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
         - ResourceName: "\U0001F993"
       CodeUri: src/zebra
-      Handler: zebra.handler
-      Runtime: nodejs8.10
+      Handler: index.handler
+      Runtime: nodejs12.x
       MemorySize: 3008
       Timeout: 30
       Tracing: Active
@@ -158,8 +158,8 @@ Resources:
         - Stackery Stack ${StackeryStackTagName} Environment ${StackeryEnvironmentTagName} Function ${ResourceName}
         - ResourceName: "\U0001F984"
       CodeUri: src/unicorn
-      Handler: unicorn.handler
-      Runtime: nodejs8.10
+      Handler: index.handler
+      Runtime: nodejs12.x
       MemorySize: 3008
       Timeout: 30
       Tracing: Active
